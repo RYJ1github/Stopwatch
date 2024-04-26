@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body{
+        font-family: 'Times New Roman', Times, serif;
+        margin: auto;
+        text-align: center;
+        font-size: 30px;
+
+    }
+
+    time{
+        margin: auto;
+    }
+    button{
+        font-size: 20px;
+        cursor:pointer
+    }
+
+</style>
+<body>
+    <h1>Stop watch</h1>
+    <div id = 'time'>
+        <span id = 'mins'>
+            00
+        </span>
+        <span id = 'seconds'>
+            :00
+        </span>
+    </div>
+
+    <button id = "start" type="submit" onclick="start()">start</button>
+    <button id = "stop" type="submit" onclick="stop()">stop</button>
+    <button id = "reset" type="submit" onclick="reset()">reset</button>
+
+    <script>
+        let timer;
+        let mins = 0;
+        let seconds = 0;
+        let displaySeconds = 0;
+        let displayMins = 0;
+
+
+        function start(){
+            timer = setInterval(displayTime, 1);
+        }
+        function stop(){
+            clearInterval(timer);
+        }
+        function reset(){
+            clearInterval(timer);
+            mins = 0;
+            seconds = 0;
+            displaySeconds = 0;
+            displayMins = 0;
+            document.getElementById('seconds').innerHTML = '00';
+            document.getElementById('mins').innerHTML = '00';
+        }
+
+
+        function displayTime(){
+            seconds++
+            if(seconds === 60){
+                seconds = 0;
+                mins ++;
+            }
+          
+            displayMins = (mins < 10)? '0' + mins:mins;
+            document.getElementById('mins').innerHTML = displayMins + ':';
+            displaySeconds = (seconds < 10)? '0' + seconds:seconds;
+            document.getElementById('seconds').innerHTML = displaySeconds;
+        }
+
+
+</script>
+
+</body>
+</html>
